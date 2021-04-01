@@ -1,5 +1,5 @@
 - name: Setup SSH Security hardening
-  hosts: all
+  hosts: {{ host_param }}
   tags: ['security']
   become: yes
   tasks:
