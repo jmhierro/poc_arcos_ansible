@@ -1,5 +1,5 @@
-# Variable vm_rq definida en vars/main.yml. La variable de role vm_request no puede ser sobreescrita ( por precedencia )
 - name: Debug del request
+  hosts: "{{ host_param }}"
   debug:
     var: vm_rq
 # - name: Setup SSH Security hardening
