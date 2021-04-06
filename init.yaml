@@ -1,11 +1,13 @@
 - name: TestDebug
   hosts: "{{ host_param }}"
-  service:
-    name: sshd
-    state: restarted
+  tasks:
+  - name: Service
+    service:
+      name: sshd
+      state: restarted
     
 
-- name: test
-  debug:
-    msg:
-      - "host_param: {{ host_param }}"
+  - name: test
+    debug:
+      msg:
+        - "host_param: {{ host_param }}"
