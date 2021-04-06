@@ -1,7 +1,10 @@
-- name: Debug del request
+- name: TestDebug
   hosts: "{{ host_param }}"
   debug:
-    var: vm_rq
+    msg:
+      - "host_param: {{ host_param }}"
+
+    
 # - name: Setup SSH Security hardening
 #   hosts: "{{ host_param }}"
 #   tags: ['security']
