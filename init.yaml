@@ -11,3 +11,7 @@
     debug:
       msg:
         - "host_param: {{ host_param }}"
+  - name: netbackup
+    debug:
+      msg:
+        - "netbackup: {{ netbackup }}"
