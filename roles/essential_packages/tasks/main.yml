@@ -32,11 +32,6 @@
     - unzip
   when: ansible_distribution == 'Debian'
 
-- name: Install rclone from repo
-  apt:
-    deb: "{{ mirror_url }}/local-files/rclone/rclone-v1.51.0-linux-amd64.deb"
-  when: ansible_distribution == 'Debian'
-
 - name: Install essential packages for CentOS
   package:
     pkg: "{{item}}"
@@ -84,4 +79,4 @@
     - dbus
     - git
     - ntpdate
-  when: ansible_distribution == 'RedHat' or ansible_distribution == 'OracleLinux'
+  when: ansible_distribution == 'RedHat' or ansible_distribution == 'OracleLinux' or ansible_distribution == 'Amazon'
