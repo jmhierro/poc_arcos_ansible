@@ -1,17 +1,6 @@
-- name: TestDebug
+- name: HardeningSO
   hosts: "{{ host_param }}"
-  tasks:
-  - name: Service
-    service:
-      name: sshd
-      state: restarted
-    
+  become: yes
+  roles:
+    - common
 
-  - name: test
-    debug:
-      msg:
-        - "host_param: {{ host_param }}"
-  - name: netbackup
-    debug:
-      msg:
-        - "netbackup: {{ netbackup }}"

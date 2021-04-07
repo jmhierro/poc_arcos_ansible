@@ -1,0 +1,12 @@
+---
+- include: timezone.yml
+  when: timezone is defined
+
+- import_role:
+    name: essential_packages
+
+- import_role:
+    name: ntp
+
+- import_role:
+    name: disable_ipv6

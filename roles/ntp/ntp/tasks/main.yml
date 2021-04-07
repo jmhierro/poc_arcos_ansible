@@ -1,0 +1,28 @@
+---
+
+- name: Reinstall ntp with latest package
+  block:
+  - name: Remove ntp package
+    apt:
+      name: ntp
+      state: absent
+  - name: install ntp
+    apt:
+      name: ntp
+      state: latest
+      update_cache: yes
+  when: ansible_distribution == 'Debian'
+
+- name: Enable and start NTP service (CentOS)
+  service:
+    name: ntpd
+    state: "{{ ntp_state | default ('started') }}"
+    enabled: "{{ ntp_enabled | default ('yes') }}"
+  when: ansible_distribution == 'RedHat' or ansible_distribution == 'CentOS'
+
+- name: Enable and start NTP service (Debian)
+  service:
+    name: ntp
+    state: "{{ ntp_state | default ('started') }}"
+    enabled: "{{ ntp_enabled | default ('yes') }}"
+  when: ansible_distribution == 'Debian'

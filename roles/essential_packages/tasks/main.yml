@@ -1,0 +1,87 @@
+---
+ 
+- name: Install essential packages for Debian
+  action: >
+   {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+  with_items:
+    - acl
+    - sudo
+    - vim
+    - less
+    - ssl-cert
+    - curl
+    - htop
+    - python-requests
+    - libfcgi0ldbl
+    - ntp
+    - ntpdate
+    - parted
+    - dnsutils
+    - lynx
+    - sysstat
+    - mailutils
+    - snmpd
+    - rsync
+    - ncdu
+    - git
+    - python-pip
+    - acpid
+    - dbus
+    - aptitude
+    - lvm2
+    - unzip
+  when: ansible_distribution == 'Debian'
+
+- name: Install rclone from repo
+  apt:
+    deb: "{{ mirror_url }}/local-files/rclone/rclone-v1.51.0-linux-amd64.deb"
+  when: ansible_distribution == 'Debian'
+
+- name: Install essential packages for CentOS
+  package:
+    pkg: "{{item}}"
+    state: present
+  with_items:
+    - sudo
+    - vim
+    - less
+    - curl
+    - htop
+    - lvm2
+    - glibc
+    - python-requests
+    - sendmail
+    - ntpdate
+    - parted
+    - bind-utils
+    - lynx
+    - sysstat
+    - mailx
+    - dbus
+    - git
+    - ntpdate
+  when: ansible_distribution == 'CentOS'
+
+- name: Install essential packages for RedHat
+  package:
+    pkg: "{{item}}"
+    state: present
+  with_items:
+    - sudo
+    - vim
+    - less
+    - curl
+    - lvm2
+    - glibc
+    - python-requests
+    - sendmail
+    - ntpdate
+    - ntp
+    - parted
+    - bind-utils
+    - sysstat
+    - mailx
+    - dbus
+    - git
+    - ntpdate
+  when: ansible_distribution == 'RedHat' or ansible_distribution == 'OracleLinux'
